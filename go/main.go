@@ -103,11 +103,18 @@ func VerifyEndpointUrlFormat(url string) TargetEndpointFormatVerification {
 }
 
 func PingTargetEndpoint(url string) bool {
-	_, err := http.Get(url)
+	resp, err := http.Get(url)
 
 	if err != nil {
 		return false
 	}
+
+	log.Printf("Status code for URL: %s is: %d\n", url, resp.StatusCode)
+
+	if resp.StatusCode == 404 {
+		return false
+	}
+
 	return true
 }
 
