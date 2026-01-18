@@ -111,10 +111,6 @@ func PingTargetEndpoint(url string) bool {
 
 	log.Printf("Status code for URL: %s is: %d\n", url, resp.StatusCode)
 
-	if resp.StatusCode == 404 {
-		return false
-	}
-
 	return true
 }
 
